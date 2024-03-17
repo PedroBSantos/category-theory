@@ -1,5 +1,6 @@
 (ns category-theory.functions
-  (:require [clojure.spec.alpha :as s]))
+  (:require [category-theory.monad :refer [new-maybe]]
+            [clojure.spec.alpha :as s]))
 
 (defn factorial
   [number]
@@ -17,3 +18,11 @@
     (= 1 number) 1
     (= 2 number) 1
     :else (+ (fibonacci (- number 2)) (fibonacci (- number 1)))))
+
+(defn safe-div
+  [a b]
+  (if (zero? b)
+    (new-maybe)
+    (-> a
+        (/ b)
+        new-maybe)))
