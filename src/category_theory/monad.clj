@@ -18,16 +18,19 @@
   Nothing
   (nothing? [maybe] (nil? (:value maybe))))
 
-(defn- should-apply? [maybe _] (just? maybe))
+(defn- should-apply? [_ & maybes]
+  (->> maybes
+       (some (fn [maybe] (nothing? maybe) ,,,))
+       not ,,,))
 
 ; Maybe a -> (a -> Maybe b) -> Maybe b
 ; f a -> a -> f b -> f b
 ; Composição segura de funções. Uma função depende do efeito colateral de outra
 (defmulti >>= should-apply?)
 
-; Retorna a invocação parcial de uma função visto que Maybe a é Just a
-(defmethod >>= true [m f]
-  (let [value (:value m)]
-    (fn [a] (f value a))))
+(defmethod >>= true [f & maybes]
+  (->> maybes
+       (map :value ,,,)
+       (apply f ,,,)))
 
-(defmethod >>= false [_ _] (new-maybe))
+(defmethod >>= false [_ & _] (new-maybe))
