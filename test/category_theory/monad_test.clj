@@ -1,6 +1,6 @@
 (ns category-theory.monad-test
   (:require [category-theory.functions :refer [safe-div]]
-            [category-theory.monad :refer [>>= just? new-maybe nothing?]]
+            [category-theory.maybe-monad :refer [>>= just? new-maybe nothing?]]
             [clojure.test :refer [deftest is testing]]))
 
 (deftest monad-safe-div-test

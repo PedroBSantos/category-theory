@@ -1,6 +1,6 @@
 (ns category-theory.kleisli-test
   (:require [category-theory.kleisli :refer [safe-root-reciprocal]]
-            [category-theory.monad :refer [just? nothing?]]
+            [category-theory.maybe-monad :refer [just? nothing?]]
             [clojure.test :refer [deftest is testing]]))
 
 (deftest kleisli-safe-root-reciprocal-test-just

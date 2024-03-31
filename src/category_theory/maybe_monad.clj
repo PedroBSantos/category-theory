@@ -1,4 +1,4 @@
-(ns category-theory.monad)
+(ns category-theory.maybe-monad)
 
 (defrecord Maybe [value])
 (defn new-maybe

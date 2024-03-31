@@ -1,5 +1,5 @@
 (ns category-theory.functions
-  (:require [category-theory.monad :refer [new-maybe]]
+  (:require [category-theory.maybe-monad :refer [new-maybe]]
             [clojure.spec.alpha :as s]))
 
 (defn factorial
