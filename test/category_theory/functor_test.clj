@@ -1,6 +1,7 @@
 (ns category-theory.functor-test
   (:require [category-theory.functions :refer [factorial]]
-            [category-theory.functor :refer [balance fmap new-account]]
+            [category-theory.functor :refer [fmap]]
+            [category-theory.model :refer [balance new-account]]
             [clojure.test :refer [deftest is testing]]))
 
 (deftest fmap-factorial-test
