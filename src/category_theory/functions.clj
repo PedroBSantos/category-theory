@@ -1,5 +1,5 @@
 (ns category-theory.functions
-  (:require [category-theory.maybe-monad :refer [new-maybe]]
+  (:require [category-theory.model :refer [new-maybe]]
             [category-theory.monoid :refer [morph new-monoid]]
             [clojure.spec.alpha :as s]))
 

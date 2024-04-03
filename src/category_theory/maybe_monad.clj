@@ -1,22 +1,5 @@
-(ns category-theory.maybe-monad)
-
-(defrecord Maybe [value])
-(defn new-maybe
-  ([value] (->Maybe value))
-  ([] (->Maybe nil)))
-
-(defprotocol Just (just? [maybe]))
-(defprotocol Nothing (nothing? [maybe]))
-
-(extend-type
- Maybe
-  Just
-  (just? [maybe] (not= nil (:value maybe))))
-
-(extend-type
- Maybe
-  Nothing
-  (nothing? [maybe] (nil? (:value maybe))))
+(ns category-theory.maybe-monad 
+  (:require [category-theory.model :refer [new-maybe nothing?]]))
 
 (defn- should-apply? [_ & maybes]
   (->> maybes

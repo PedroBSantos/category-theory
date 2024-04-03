@@ -9,3 +9,21 @@
  Account
   Functor
   (fmap [account function] (function account)))
+
+(defrecord Maybe [value])
+(defn new-maybe
+  ([value] (->Maybe value))
+  ([] (->Maybe nil)))
+
+(defprotocol Just (just? [maybe]))
+(defprotocol Nothing (nothing? [maybe]))
+
+(extend-type
+ Maybe
+  Just
+  (just? [maybe] (not= nil (:value maybe))))
+
+(extend-type
+ Maybe
+  Nothing
+  (nothing? [maybe] (nil? (:value maybe))))

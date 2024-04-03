@@ -1,5 +1,5 @@
 (ns category-theory.kleisli 
-  (:require [category-theory.maybe-monad :refer [just? new-maybe]]))
+  (:require [category-theory.model :refer [just? new-maybe]]))
 
 ; a -> (b, string)
 (defn lower-case [string]
