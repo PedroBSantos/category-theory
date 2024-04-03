@@ -1,5 +1,6 @@
 (ns category-theory.functions
   (:require [category-theory.maybe-monad :refer [new-maybe]]
+            [category-theory.monoid :refer [morph new-monoid]]
             [clojure.spec.alpha :as s]))
 
 (defn factorial
@@ -26,3 +27,16 @@
     (-> a
         (/ b)
         new-maybe)))
+
+(defn greatest
+  ([values]
+   (if (empty? values)
+     (new-monoid Integer/MIN_VALUE)
+     (->> values
+          first ,,,
+          new-monoid ,,,
+          (greatest values))))
+  ([values initial]
+   (reduce (fn [current-greatest current-value]
+             (morph current-greatest (partial max current-value)))
+           initial values)))

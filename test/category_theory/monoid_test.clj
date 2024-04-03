@@ -1,5 +1,5 @@
 (ns category-theory.monoid-test
-  (:require [category-theory.functions :refer [factorial fibonacci]]
+  (:require [category-theory.functions :refer [factorial fibonacci greatest]]
             [category-theory.monoid :refer [morph new-monoid]]
             [clojure.test :refer [deftest is testing]]))
 
@@ -21,3 +21,13 @@
            (let [monoid (new-monoid 3)
                  factorial-after-fibonacci (comp factorial fibonacci)]
              (morph monoid factorial-after-fibonacci))))))
+
+(deftest monoid-greatest-test
+  (testing "Deveria retornar o maior valor de [1 2 -5 9 -7 -5 10]"
+    (is (= (new-monoid 10)
+           (let [values [1 2 -5 9 -7 -5 10]]
+             (greatest values)))))
+  (testing "Deveria retornar Integer/MIN_VALUE"
+    (is (= (new-monoid Integer/MIN_VALUE)
+           (let [values []]
+             (greatest values))))))
