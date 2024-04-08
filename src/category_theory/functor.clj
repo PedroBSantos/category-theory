@@ -5,3 +5,8 @@
  clojure.lang.PersistentVector
   Functor
   (fmap [functor function] (map function functor)))
+
+(extend-type
+ clojure.lang.LazySeq
+  Functor
+  (fmap [functor function] (map function functor)))
